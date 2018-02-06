@@ -11,24 +11,37 @@ from gunicorn.config import User
 from mptt.models import MPTTModel, TreeForeignKey
 from tmex_main.utils.model_utils import ContentTypeAware, MttpContentTypeAware
 
-
+# класс компании
 class Company(models.Model):
+
     # название компании
-    name = models.CharField(max_length=100,default="",blank=True,none=True)
+    name = models.CharField(max_length=100, default="", blank=True, none=True)
     # инн
-    inn = models.CharField(max_length=10,default="",blank=True,none=True)
+    inn = models.CharField(max_length=10, default="", blank=True, none=True)
     # КПП
-    kpp = models.CharField(max_length=10,default="",blank=True,none=True)
+    kpp = models.CharField(max_length=10, default="", blank=True, none=True)
     # ОГРН
-    ogrn = models.CharField(max_length=9,default="",blank=True,none=True)
+    ogrn = models.CharField(max_length=9, default="", blank=True, none=True)
     # юридический адрес
-    jurAddress = models.CharField(max_length=400,default="",blank=True,none=True)
+    jurAddress = models.CharField(max_length=400, default="", blank=True, none=True)
     # физический адрес
-    fisicAddress   = models.CharField(max_length=400,default="",blank=True,none=True)
+    fisicAddress = models.CharField(max_length=400, default="", blank=True, none=True)
     # Р/С
     rs = models.CharField(max_length=9, default="", blank=True, none=True)
+    # БИК
+    bik = models.CharField(max_length=9, default="", blank=True, none=True)
+    # банк
+    b = models.CharField(max_length=100, default="", blank=True, none=True)
+    # к/с
+    ks = models.CharField(max_length=30, default="", blank=True, none=True)
 
+    def __unicode__(self):
+        return self.name
 
+    def __str__(self):
+        return self.name
+
+# класс заказчика
 class Consumer(models.Model):
     # предприятие
     TP_COMPANY = 0
@@ -63,10 +76,38 @@ class Consumer(models.Model):
     # баланс
     balance = models.IntegerField(default=0)
     # компании
-    companies = models.ManyToManyField(Company,blank=True,none=True)
+    companies = models.ManyToManyField(Company, blank=True, none=True)
 
     def __unicode__(self):
         return self.name
 
     def __str__(self):
         return self.name
+
+# класс транзакции
+class Transaction(models.Model):
+    value = models.IntegerField(default=0)
+    consumer = models.ForeignKey(Consumer)
+    dt = models.DateTimeField(default=timezone.now())
+    comment = models.CharField(max_length=1000, default="")
+
+    def __unicode__(self):
+        return str(self.value)
+
+    def __str__(self):
+        return str(self.value)
+
+
+# обращение в техподдержку
+class SupportTread(models.Model):
+    handle = models.CharField(max_length=100)
+    author = models.ForeignKey(User)
+
+
+# сообщение
+class Message(models.Model):
+    dt = models.DateTimeField(default=timezone.now())
+    author = models.ForeignKey(User)
+    target = models.ForeignKey(User)
+    supportTread = models.ForeignKey(SupportTread)
+
