@@ -3,7 +3,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from sc.admin import SubmissionInline
+from tmex.admin import SubmissionInline
 from users.models import ScUser
 
 

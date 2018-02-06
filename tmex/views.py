@@ -10,10 +10,10 @@ from django.shortcuts import render, redirect, get_object_or_404, render_to_resp
 from django.template import RequestContext
 from django.template.defaulttags import register
 
-from sc.forms import SubmissionForm, ImageForm
-from sc.models import Submission, Comment, Vote, CreativeType
-from sc.utils.helpers import post_only
-from sc_main.localCode import processUrl
+from tmex.forms import SubmissionForm, ImageForm
+from tmex.models import Submission, Comment, Vote, CreativeType
+from tmex.utils.helpers import post_only
+from tmex_main.localCode import processUrl
 from users.models import ScUser
 
 

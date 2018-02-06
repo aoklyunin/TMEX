@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
-from sc.models import Submission, Comment, Vote, CreativeType
+from tmex.models import Submission, Comment, Vote, CreativeType
 
 
 # Register your models here.

@@ -7,7 +7,7 @@ from hashlib import md5
 import mistune
 from django.contrib.auth.models import User
 from django.db import models
-from sc_main.settings.common import KARMA_RED_LIMIT, KARMA_RED_COLOR, KARMA_GREEN_LIMIT, KARMA_YELLOW_COLOR, \
+from tmex_main.settings.common import KARMA_RED_LIMIT, KARMA_RED_COLOR, KARMA_GREEN_LIMIT, KARMA_YELLOW_COLOR, \
     KARMA_GREEN_COLOR
 
 

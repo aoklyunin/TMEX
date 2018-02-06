@@ -8,10 +8,10 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseBadRequest, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
-from sc.forms import UserForm, ProfileForm
-from sc.models import Submission, CreativeType
-from sc.views import getCreativeByType
-from sc_main.settings.common import REG_PASSWORD, DATE_INPUT_FORMATS
+from tmex.forms import UserForm, ProfileForm
+from tmex.models import Submission, CreativeType
+from tmex.views import getCreativeByType
+from tmex_main.settings.common import REG_PASSWORD, DATE_INPUT_FORMATS
 from users.models import ScUser
 
 

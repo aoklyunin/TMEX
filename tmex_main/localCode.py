@@ -1,6 +1,6 @@
 import re
 
-from sc.models import Submission
+from tmex.models import Submission
 
 
 def processUrl(text):

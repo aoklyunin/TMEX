@@ -61,11 +61,11 @@ HTTP_ACCEPT = True
 # EMAIL
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='sc_main <noreply@domain_name')
+                         default='tmex_main <noreply@domain_name')
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 MAILGUN_ACCESS_KEY = env('DJANGO_MAILGUN_API_KEY', default='')
 MAILGUN_SERVER_NAME = env('DJANGO_MAILGUN_SERVER_NAME',default='')
-EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default='[sc_main] ')
+EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default='[tmex_main] ')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
 # TEMPLATE CONFIGURATION
@@ -82,12 +82,12 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'USER': 'root',
-        'PASSWORD': 'Skhzs6PzRMwh',
-        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dr4ka4fgvs501',
+        'USER': 'ooqgczkkqhrgxt',
+        'PASSWORD': 'd70f9e6d0cf85ccb1fb4f16aa92e0de071456859b524fa4483735fc992a1458e',
+        'HOST': 'ec2-54-217-245-9.eu-west-1.compute.amazonaws.com',   # Or an IP Address that your DB is hosted on
+        'PORT': '5432',
     }
 }
 # CACHING

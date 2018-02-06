@@ -41,7 +41,7 @@ THIRD_PARTY_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'users',
-    'sc',
+    'tmex',
     # Your stuff: custom apps go here
 )
 
@@ -202,10 +202,10 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # URL Configuration
 # ------------------------------------------------------------------------------
-ROOT_URLCONF = 'sc_main.urls'
+ROOT_URLCONF = 'tmex_main.urls'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
-WSGI_APPLICATION = 'sc_main.wsgi.application'
+WSGI_APPLICATION = 'tmex_main.wsgi.application'
 
 # Location of root django.contrib.admin URL,
 ADMIN_URL = r'^admin/'

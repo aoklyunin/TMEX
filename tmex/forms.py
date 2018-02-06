@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.forms import FileInput
 
-from sc.models import Submission, CreativeType
+from tmex.models import Submission, CreativeType
 from users.models import ScUser
 
 

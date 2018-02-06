@@ -4,8 +4,8 @@ from string import ascii_letters as letters
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 
-from sc.models import Comment
-from sc.models import Submission
+from tmex.models import Comment
+from tmex.models import Submission
 from users.models import ScUser
 
 

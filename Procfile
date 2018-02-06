@@ -1,1 +1,1 @@
-web: gunicorn sc_main.wsgi:application
+web: gunicorn tmex_main.wsgi:application

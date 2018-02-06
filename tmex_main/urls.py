@@ -21,17 +21,17 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.generic import TemplateView
 
-from sc.views import ehandler404, ehandler500
+from tmex.views import ehandler404, ehandler500
 from django.conf.urls.static import static
 
 urlpatterns = [
     url(settings.ADMIN_URL, include(admin.site.urls)),
     # url(r'^$', TemplateView.as_view(template_name='index.html'), name="home"),
     # url(r'^users/', include('users.urls')),
-    url(r'^', include("sc.urls")),
+    url(r'^', include("tmex.urls")),
     url(r'^', include("users.urls")),
-    url(r'^creative/', include("sc.creativeUrls")),
-    url(r'^power/creative/', include("sc.powerUrls")),
+    url(r'^creative/', include("tmex.creativeUrls")),
+    url(r'^power/creative/', include("tmex.powerUrls")),
 ]
 
 
