@@ -1,0 +1,18 @@
+{% extends 'public/default_page.html' %}
+{% load humanize %}
+{% load staticfiles %}
+{% load static %}
+
+{%block menu %}
+{%endblock%}
+
+
+
+{%block page_content %}
+ <div align="center" class="notFoundCaption"> Такой страницы не существует</div>
+  </div></div></div>
+       <div class="notFoundImgWrapper">
+         <img class="notFoundImg" src="{% static 'img/notFound.gif' %}"  ></a>
+       </div>
+  <div><div><div>
+{% endblock %}

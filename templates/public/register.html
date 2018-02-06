@@ -1,0 +1,39 @@
+{% extends 'public/default_page.html' %}
+
+
+
+{% block content %}
+<div class="info-container" >
+    <form class="form-signin" method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <h1 align="center" class="form-signin-heading bebasWhiteText">Регистрация</h1>
+<div class="row" style="width:100%">
+      <div class="col-12" align="right">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    </div>
+        {% for field in form %}
+          <div class="padded10">
+            {{ field }}
+            {% for error in field.errors %}
+                <p class="text-danger">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+
+        {% if username_exists %}
+            <p class="text-danger">Пользователь уже существует</p>
+        {% endif %}
+
+         <div class="padded10">
+            <button class="btn btn-lg btn-primary btn-block" type="submit" {% if user.is_authenticated %}disabled{% endif %}>Зарегистрироваться</button>
+         </div>
+         <div class="padded15">
+            <h4 align="center">Уже есть аккаунт? <a href="{% url 'login' %}">Войдите</a></h4>
+         </div>
+    </form>
+  </div>
+
+{% endblock %}

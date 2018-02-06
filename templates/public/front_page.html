@@ -1,0 +1,41 @@
+{% extends 'base_new.html' %}
+
+{% load staticfiles %}
+{% load static %}
+
+
+
+{% block link_block %}
+<link rel="stylesheet" href="{% static 'custom_css/mainPage.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+        </div>
+        <div class="carousel-item">
+        </div>
+    </div>
+</div>
+
+<div class="row errorMessageBlock">
+   <div class="offset-3 col-6">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+</div>
+{% endblock %}
+
+
+
+
+{% block footer_script %}
+
+<script>
+  $('.carousel').carousel({interval:3500, wrap: false});
+
+</script>
+{%endblock %}

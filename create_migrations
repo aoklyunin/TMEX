@@ -1,0 +1,7 @@
+#!/bin/bash
+
+python3 manage.py makemigrations users --settings=sc_main.settings.production;
+python3 manage.py makemigrations sc --settings=sc_main.settings.production;
+python3 manage.py makemigrations --settings=sc_main.settings.production;
+python3 manage.py migrate --settings=sc_main.settings.production;
+python3 manage.py pop --settings=sc_main.settings.production;

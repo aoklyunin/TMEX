@@ -1,0 +1,150 @@
+{% extends 'public/default_page.html' %}
+{% load humanize %}
+{% load staticfiles %}
+{% load static %}
+
+
+{%block page_content %}
+<div class="row creativeListHeader">
+  <div class="col-12">
+    <div class="row" >
+      <div class="col-10">
+        <a class="thread-title" href="{{ submission.comments_url }}">
+          {{ submission.title }}
+        </a>
+        {% if canEdit %}
+          <a href="/edit/{{submission.pk}}">
+            <img class="editCreativeImg" src="{% static 'img/editPost.png'%}" title="Редактировать">
+          </a>
+        {% endif %}
+      </div>
+      <div class="col-2 postDate">
+        {% if flgPower %}
+          <div class="powerDate" align="right" >
+            {{ submission.stoDate|date:"d/m/y" }}
+          </div>
+        {%else%}
+          <div align="right" >
+            {{ submission.timestamp|date:"H:i d/m/y" }}
+          </div>
+        {%endif%}
+      </div>
+    </div>
+    {% if messages %}
+    <div class="row" style="width:100%">
+      <div class="offset-3 col-6">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    </div>
+    {%endif%}
+    <div class="row" >
+      <a class="postListUserName" href ="\user\{{submission.author.user.username}}">
+        {{submission.author.user.username}}
+      </a>
+       {% if flgPower %}
+                <div class="postListRegard">
+                  {%ifequal submission.regard 0 %}
+                    FREE
+                  {%else%}
+                    {{submission.regard }}&#8381;
+                  {% endifequal %}
+                </div>
+      {%endif%}
+    </div>
+    <div class="row">
+      <div class="info-container" style="width:100%;">
+        {% if submission.image %}
+                <img class="padded15" src="{%static submission.image.url%}" width="100%" ><br>
+        {% endif %}
+        {% if submission.link_type == 2 %}
+          <iframe class = "ytframe padded15" width="100%" height="100"
+                              src="{{ submission.url }}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+        {% endif %}
+
+        {% if submission.link_type == 3 %}
+          <iframe class="padded15" width="100%" height="180" scrolling="no" frameborder="no" src="{{ submission.url }}"></iframe>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row padded15">
+        <div class="col-11 textBackground" >
+        <div class="readableText">
+          <div style="overflow:hidden;">
+            {{ submission.text_html|safe }}
+          </div>
+        </div>
+        {% ifnotequal submission.link_type -1 %}
+        <br>
+        <div style="text-align:right;">
+          <a href="{{ submission.url }}">
+            Ссылка
+          </a>
+        </div>
+        {% endifnotequal %}
+      </div>
+      <div class="col-1" align="right">
+        <div class="vote"
+             data-what-type="submission"
+             data-what-id="{{ submission.id }}">
+            <div><i class="fa fa-chevron-up {% if  vote_s_val == 1 %} upvoted {% endif %}"
+                                    title="upvote" onclick="vote(this)"></i>
+            </div>
+            <div class="score" title="score">{{ submission.score }}</div>
+            <div><i class="fa fa-chevron-down{% if  vote_s_val == -1 %} downvoted {% endif %}"
+                                    title="downvote"
+                                    onclick="vote(this)"></i></div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" align="right">
+         {% if canDelete %}
+          <a align="right" href="/delete/{{submission.pk}}" class="confirmation removeThreadBtn">Удалить</a>
+        {% endif %}
+      </div>
+    </div>
+    {% if flgFAQ%}{%else%}
+    <div class="row commentRow">
+      <div class="col-6 offset-3">
+        <h1 align="center"> Комментарии</h1>
+      </div>
+    </div>
+    {% if user.is_authenticated %}
+      <div class="row">
+        <div class="col-10 offset-1">
+          <form id="commentForm" class="form-horizontal"  enctype="multipart/form-data"
+              action="/post/comment/"
+              data-parent-type="submission"
+              data-parent-id="{{ submission.id }}">
+            <fieldset>
+              <div class="row">
+                  <div class="ceFieldWrapper col-9">
+                    <div contentEditable="true" class="ceField commentContent" id="commentContent" ></div>
+                  </div>
+                  <div class="col-2 commentSubmit">
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="addCommentImage"  target-id="mainImageField" title="Добавить картинку"></div>
+                <input type="file" id="mainImageField" name="file" class="displayNone imageFileInput" >
+                <div class="col-2 addSmilesHolder">
+                  <div align="right" id="addSmiles" title="Смайлы" class="addSmilesTree"></div>
+                  {% include '__layout/smile_panel.html' with target_id='commentContent'  %}
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+    {% include '__items/comment.html' %}
+    {% endif %}
+    <div class="row" style="padding-top:40px">
+    </div>
+  </div>
+</div>
+{% endblock %}
