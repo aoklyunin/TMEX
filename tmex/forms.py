@@ -6,6 +6,54 @@ from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.forms import FileInput
 
+
+class ConsumerForm(forms.ModelForm):
+    alphanumeric = RegexValidator(r'^[0-9a-zA-Z_@\.]*$',
+                                  'Это поле может содержать только латинские буквы, '
+                                  'числа и символ _.')
+
+    username = forms.CharField(widget=forms.TextInput(
+        attrs=
+        {'class': "form-control",
+         'placeholder': "Email",
+         'required': '',
+         'autofocus': ''}),
+        max_length=20,
+        min_length=3,
+        required=True,
+        validators=[alphanumeric])
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs=
+        {'class': "form-control",
+         'placeholder': "Пароль",
+         'required': ''}),
+        min_length=4,
+        required=True)
+    rep_password = forms.CharField(widget=forms.PasswordInput(
+        attrs=
+        {'class': "form-control",
+         'placeholder': "Повторите пароль",
+         'required': ''}),
+        min_length=4,
+        required=True)
+
+    keyWord = forms.CharField(widget=forms.TextInput(
+        attrs=
+        {'class': "form-control",
+         'placeholder': "Ключ для регистрации",
+         'required': '',
+         'autofocus': ''}),
+        max_length=12,
+        min_length=3,
+        required=True,
+        validators=[alphanumeric])
+
+    class Meta:
+        model = User
+        fields = ('username', 'password')
+
+
+
 #
 #
 # class UserForm(forms.ModelForm):

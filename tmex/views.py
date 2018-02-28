@@ -8,6 +8,10 @@ from django.http import JsonResponse, HttpResponseBadRequest, Http404, \
     HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.template import RequestContext
+from django.contrib.auth import logout, login, authenticate
+
+from tmex.forms import ConsumerForm
+from tmex.models import Consumer
 
 
 def permissionDenied(request):
@@ -32,6 +36,84 @@ def ehandler500(request):
     return response
 
 
-def is_moderator(user):
-    return user.groups.filter(name='moderators').exists()
+def signin(request):
+    """
+    Pretty straighforward user authentication using password and username
+    supplied in the POST request.
+    """
 
+    if request.user.is_authenticated():
+        messages.warning(request, "Вы уже вошли")
+        return render(request, 'public/login.html')
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if not username or not password:
+            return HttpResponseBadRequest()
+
+        user = authenticate(username=username,
+                            password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                redirect_url = request.POST.get('next') or 'frontpage'
+                return redirect('/user/' + username + '/')
+            else:
+                messages.error("Доступ запрещён")
+                return render(request, 'public/login.html',
+                              {'login_error': "Аккаунт запрещён"})
+        else:
+            return render(request, 'public/login.html',
+                          {'login_error': "Пара логин/пароль не найдена"})
+
+    return render(request, 'public/login.html')
+
+
+def signout(request):
+    """
+    Log out user if one is logged in and redirect them to frontpage.
+    """
+
+    if request.user.is_authenticated():
+        redirect_page = request.POST.get('current_page', '/')
+        logout(request)
+        messages.success(request, 'Вы вышли')
+        return redirect(redirect_page)
+
+    return redirect('frontpage')
+
+
+def signup(request):
+    """
+    Handles user registration using UserForm from forms.py
+    Creates new User and new RedditUser models if appropriate data
+    has been supplied.
+
+    If account has been created user is redirected to login page.
+    """
+    user_form = ConsumerForm()
+    if request.user.is_authenticated():
+        messages.warning(request, 'Вы уже зарегистрированы и вошли')
+        return render(request, 'public/register.html', {'form': user_form})
+
+    if request.method == "POST":
+        user_form = ConsumerForm(request.POST)
+
+        if user_form.is_valid():
+            if user_form.cleaned_data["password"] != user_form.cleaned_data["rep_password"]:
+                messages.error(request, 'пароли не совпадают')
+            else:
+                user = user_form.save()
+                user.set_password(user.password)
+                user.save()
+                consumer = Consumer()
+                consumer.user = user
+                consumer.save()
+                user = authenticate(username=request.POST['username'],
+                                    password=request.POST['password'])
+                login(request, user)
+                return redirect('frontpage')
+
+    return render(request, 'public/register.html', {'form': user_form})
