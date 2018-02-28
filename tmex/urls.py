@@ -20,16 +20,5 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^comments/(?P<thread_id>[0-9]+)$', views.comments, name="thread"),
-    url(r'^delete/(?P<thread_id>[0-9]+)$', views.delete, name="delete"),
-    url(r'^delete/comment/(?P<thread_id>[0-9]+)$', views.deleteComment, name="deleteComment"),
-    url(r'^edit/(?P<thread_id>[0-9]+)$', views.edit, name="edit"),
-    url(r'^submit/$', views.submit, name="submit"),
-    url(r'^submit/faq/$', views.submitFAQ, name="submitFAQ"),
-    url(r'^submit/power/$', views.submitPower, name="submitPower"),
-    url(r'^post/comment/$', views.post_comment, name="post_comment"),
-    url(r'^vote/$', views.vote, name="vote"),
-    url(r'^permission/denied/$', views.permissionDenied, name="permissionDenied"),
-    url(r'^faq/', views.faq, name="faq"),
     url(r'^$', views.frontPage, name="frontpage")
 ]

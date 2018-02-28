@@ -7,39 +7,40 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils import timezone
-from gunicorn.config import User
+from django.contrib.auth.models import User
 from mptt.models import MPTTModel, TreeForeignKey
 from tmex_main.utils.model_utils import ContentTypeAware, MttpContentTypeAware
 
+
 # класс компании
 class Company(models.Model):
-
     # название компании
-    name = models.CharField(max_length=100, default="", blank=True, none=True)
+    name = models.CharField(max_length=100, default="", blank=True)
     # инн
-    inn = models.CharField(max_length=10, default="", blank=True, none=True)
+    inn = models.CharField(max_length=10, default="", blank=True)
     # КПП
-    kpp = models.CharField(max_length=10, default="", blank=True, none=True)
+    kpp = models.CharField(max_length=10, default="", blank=True)
     # ОГРН
-    ogrn = models.CharField(max_length=9, default="", blank=True, none=True)
+    ogrn = models.CharField(max_length=9, default="", blank=True)
     # юридический адрес
-    jurAddress = models.CharField(max_length=400, default="", blank=True, none=True)
+    jurAddress = models.CharField(max_length=400, default="", blank=True)
     # физический адрес
-    fisicAddress = models.CharField(max_length=400, default="", blank=True, none=True)
+    fisicAddress = models.CharField(max_length=400, default="", blank=True)
     # Р/С
-    rs = models.CharField(max_length=9, default="", blank=True, none=True)
+    rs = models.CharField(max_length=9, default="", blank=True)
     # БИК
-    bik = models.CharField(max_length=9, default="", blank=True, none=True)
+    bik = models.CharField(max_length=9, default="", blank=True)
     # банк
-    b = models.CharField(max_length=100, default="", blank=True, none=True)
+    b = models.CharField(max_length=100, default="", blank=True)
     # к/с
-    ks = models.CharField(max_length=30, default="", blank=True, none=True)
+    ks = models.CharField(max_length=30, default="", blank=True)
 
     def __unicode__(self):
         return self.name
 
     def __str__(self):
         return self.name
+
 
 # класс заказчика
 class Consumer(models.Model):
@@ -76,13 +77,14 @@ class Consumer(models.Model):
     # баланс
     balance = models.IntegerField(default=0)
     # компании
-    companies = models.ManyToManyField(Company, blank=True, none=True)
+    companies = models.ManyToManyField(Company, blank=True)
 
     def __unicode__(self):
         return self.name
 
     def __str__(self):
         return self.name
+
 
 # класс транзакции
 class Transaction(models.Model):
@@ -107,7 +109,6 @@ class SupportTread(models.Model):
 # сообщение
 class Message(models.Model):
     dt = models.DateTimeField(default=timezone.now())
-    author = models.ForeignKey(User)
-    target = models.ForeignKey(User)
+    author = models.ForeignKey(User, related_name='author')
+    target = models.ForeignKey(User, related_name='target')
     supportTread = models.ForeignKey(SupportTread)
-
