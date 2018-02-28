@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block link_block  %}
+<link href="{% static 'custom_css/signup.css'%}" rel="stylesheet">
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+
+  <form class="form-signup" method="post" action="{% url 'signup' %}">
+  {% csrf_token %}
+    <h1 align="center" class="form-signup-heading">Регистрация</h1>
+      {% for field in form %}
+        {{ field }}
+        {% for error in field.errors %}
+          <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+      {% endfor %}
+
+      {% if username_exists %}
+        <p class="text-danger">Пользователь уже существует</p>
+      {% endif %}
+      <button class="btn btn-lg btn-primary btn-block pageInput" type="submit" {% if user.is_authenticated %}disabled{% endif %}>Зарегистрироваться</button>
+  </form>
+
+</div>
+
+{% endblock %}
+
+
+{% block footer_script %}
+
+
+{%endblock%}
+

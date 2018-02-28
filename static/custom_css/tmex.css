@@ -99,6 +99,8 @@ body{
     flex-direction: column;
     -webkit-flex-direction: column;
     height: 100%;
+  background-color: #eee;
+
 }
 
 .content{
@@ -189,4 +191,8 @@ Follow me on Twitter @maridlcrmn
 
 .navLink.disabled {
   color: rgba(255, 255, 255, 0.25);
+}
+
+.alert{
+  margin:20px;
 }

@@ -44,9 +44,10 @@ def signin(request):
 
     if request.user.is_authenticated():
         messages.warning(request, "Вы уже вошли")
-        return render(request, 'public/login.html')
+        return render(request, 'public/signin.html')
 
     if request.method == "POST":
+        redirect_page = request.POST.get('current_page', '/')
         username = request.POST.get('username')
         password = request.POST.get('password')
         if not username or not password:
@@ -62,13 +63,13 @@ def signin(request):
                 return redirect('/user/' + username + '/')
             else:
                 messages.error("Доступ запрещён")
-                return render(request, 'public/login.html',
+                return render(request, 'public/signin.html',
                               {'login_error': "Аккаунт запрещён"})
         else:
-            return render(request, 'public/login.html',
+            return render(request, 'public/signin.html',
                           {'login_error': "Пара логин/пароль не найдена"})
 
-    return render(request, 'public/login.html')
+    return render(request, 'public/signin.html')
 
 
 def signout(request):
@@ -96,7 +97,7 @@ def signup(request):
     user_form = ConsumerForm()
     if request.user.is_authenticated():
         messages.warning(request, 'Вы уже зарегистрированы и вошли')
-        return render(request, 'public/register.html', {'form': user_form})
+        return render(request, 'public/signup.html', {'form': user_form})
 
     if request.method == "POST":
         user_form = ConsumerForm(request.POST)
@@ -105,15 +106,20 @@ def signup(request):
             if user_form.cleaned_data["password"] != user_form.cleaned_data["rep_password"]:
                 messages.error(request, 'пароли не совпадают')
             else:
-                user = user_form.save()
-                user.set_password(user.password)
-                user.save()
-                consumer = Consumer()
-                consumer.user = user
-                consumer.save()
-                user = authenticate(username=request.POST['username'],
-                                    password=request.POST['password'])
-                login(request, user)
+                username = user_form["username"]
+                try:
+                    User.objects.get(username=username)
+                    messages.error(request, 'пользователь уже существует')
+                except (User.DoesNotExist):
+                    new_user = User(username=username)
+                    new_user.set_password(user_form.cleaned_data["password"])
+                    new_user.save()
+                    consumer = Consumer()
+                    consumer.user = new_user
+                    consumer.save()
+                    user = authenticate(username=request.POST['username'],
+                                        password=request.POST['password'])
+                    login(request, user)
                 return redirect('frontpage')
 
-    return render(request, 'public/register.html', {'form': user_form})
+    return render(request, 'public/signup.html', {'form': user_form})
