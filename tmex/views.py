@@ -12,6 +12,7 @@ from django.contrib.auth import logout, login, authenticate
 
 from tmex.forms import ConsumerForm
 from tmex.models import Consumer
+from tmex.utils.helpers import post_only
 
 
 def permissionDenied(request):
@@ -36,40 +37,38 @@ def ehandler500(request):
     return response
 
 
+@post_only
 def signin(request):
     """
     Pretty straighforward user authentication using password and username
     supplied in the POST request.
     """
 
+    redirect_page = request.POST.get('redirect_path', '/')
+
     if request.user.is_authenticated():
         messages.warning(request, "Вы уже вошли")
-        return render(request, 'public/signin.html')
+        return redirect(redirect_page)
 
-    if request.method == "POST":
-        redirect_page = request.POST.get('current_page', '/')
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        if not username or not password:
-            return HttpResponseBadRequest()
+    username = request.POST.get('username')
+    password = request.POST.get('password')
 
-        user = authenticate(username=username,
-                            password=password)
+    if not username or not password:
+        return HttpResponseBadRequest()
 
-        if user:
-            if user.is_active:
-                login(request, user)
-                redirect_url = request.POST.get('next') or 'frontpage'
-                return redirect('/user/' + username + '/')
-            else:
-                messages.error("Доступ запрещён")
-                return render(request, 'public/signin.html',
-                              {'login_error': "Аккаунт запрещён"})
+    user = authenticate(username=username,
+                        password=password)
+
+    if user:
+        if user.is_active:
+            login(request, user)
+            return redirect(redirect_page)
         else:
-            return render(request, 'public/signin.html',
-                          {'login_error': "Пара логин/пароль не найдена"})
-
-    return render(request, 'public/signin.html')
+            messages.error("Доступ запрещён")
+            return HttpResponseBadRequest()
+    else:
+        messages.error("Пара логин/пароль не найдена")
+        return HttpResponseBadRequest()
 
 
 def signout(request):
