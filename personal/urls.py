@@ -21,4 +21,5 @@ from personal import views
 
 urlpatterns = [
     url(r'^$', views.frontPage, name="personalFrontpage"),
+    url(r'^company/$', views.company, name="company"),
 ]

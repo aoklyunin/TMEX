@@ -26,16 +26,17 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
     <div class="container">
-        <a class="navbar-brand" href="#">TMEX</a>
+        <a class="navbar-brand" href="/">TMEX</a>
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
             &#9776;
         </button>
         <div class="collapse navbar-collapse" id="exCollapsingNavbar">
             <ul class="nav navbar-nav">
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Link</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Service</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">More</a></li>
+                <li class="nav-item"><a href="/about/" class="nav-link">О сервисе</a></li>
+                <li class="nav-item"><a href="/start/" class="nav-link">Как начать</a></li>
+                <li class="nav-item"><a href="/attorney/" class="nav-link">Поверенным</a></li>
+                <li class="nav-item"><a href="/help/" class="nav-link">Помощь</a></li>
+                <li class="nav-item"><a href="/price/" class="nav-link">Цены</a></li>
             </ul>
 
 
@@ -46,19 +47,19 @@
                <li class="nav-item dropdown show">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{user.username}}</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown03">
-                  <a class="dropdown-item" href="#">Личный кабинет</a>
-                  <a class="dropdown-item" href="#">Компания</a>
-                  <a class="dropdown-item" href="#">Баланс</a>
-                  <a class="dropdown-item" href="#">Поиск ТЗ</a>
+                  <a class="dropdown-item" href="/personal/">Личный кабинет</a>
+                  <a class="dropdown-item" href="/personal/company/">Компания</a>
+                  <a class="dropdown-item" href="/balance/">Баланс</a>
+                  <a class="dropdown-item" href="/finding/">Поиск ТЗ</a>
                    <div class="dropdown-divider"></div>
                    <a class="dropdown-item" href="/signout/">Выход</a>
                 </div>
                 </li>
-                <li class="nav-item"><a href="#" class="nav-link">Тех. поддержка</a></li>
+                <li class="nav-item"><a href="/support/" class="nav-link">Тех. поддержка</a></li>
                 {% else %}
-               <li class="nav-item"><a href="#" class="nav-link">Регистрация</a></li>
+               <li class="nav-item"><a href="/signup/" class="nav-link">Регистрация</a></li>
                 <li class="dropdown order-1">
-                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
+                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Вход <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right mt-1">
                       <li class="p-3">
                             <form class="form" id="signInForm" role="form" action="{% url 'signin'%}" method="post" redirect_path="{{ request.path }}">
@@ -73,7 +74,7 @@
                                     <button type="submit" class="btn btn-primary btn-block">Вход</button>
                                 </div>
                                 <div class="form-group text-xs-center">
-                                    <small><a href="#">Забыли пароль</a></small>
+                                    <small><a href="/restore/">Забыли пароль</a></small>
                                 </div>
                             </form>
                         </li>
@@ -93,11 +94,10 @@
           <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
 </div>
+ {% block content %}
 
- {{ user.is_authenticated }}
-  {% block content %}
-  Nadfas
-  {%endblock%}
+
+ {%endblock%}
 </div>
 
 
@@ -107,7 +107,7 @@
                 <div class="col-sm-3 myCols">
                     <h5>Get started</h5>
                     <ul>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="#">Sign up</a></li>
                         <li><a href="#">Downloads</a></li>
                     </ul>
