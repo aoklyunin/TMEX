@@ -44,6 +44,8 @@ def signin(request):
     supplied in the POST request.
     """
 
+    print(request.POST)
+
     redirect_page = request.POST.get('redirect_path', '/')
 
     if request.user.is_authenticated():
