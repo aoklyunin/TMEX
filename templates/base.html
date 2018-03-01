@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'custom_css/tmex.css' %}">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+
   {% block link_block %}
 
   {% endblock %}
@@ -87,19 +89,23 @@
         </div>
     </div>
 </nav>
-<div class="content">
 
+
+  {%block page_content%}
+<div class="content">
 <div class="errorMessageBlock">
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
 </div>
+
+
  {% block content %}
 
 
  {%endblock%}
 </div>
-
+ {%endblock%}
 
     <footer id="myFooter">
         <div class="container">
