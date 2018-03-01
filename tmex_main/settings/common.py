@@ -41,6 +41,10 @@ THIRD_PARTY_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'tmex',
+    'personal',
+    'balance',
+    'finding',
+    'support',
     # Your stuff: custom apps go here
 )
 

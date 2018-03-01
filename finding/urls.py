@@ -17,18 +17,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 
-from tmex import views
+from finding import views
 
 urlpatterns = [
-    url(r'^$', views.frontPage, name="frontpage"),
-    url(r'^signup/$', views.signup, name="signup"),
-    url(r'^signin/$', views.signin, name="signin"),
-    url(r'^signout/$', views.signout, name="signout"),
-
-    url(r'^about/$', views.about, name="about"),
-    url(r'^start/$', views.start, name="start"),
-    url(r'^attorney/$', views.attorney, name="attorney"),
-    url(r'^help/$', views.help, name="help"),
-    url(r'^price/$', views.price, name="price"),
-    url(r'^restore/$', views.restore, name="restore"),
+    url(r'^$', views.frontPage, name="findingFrontpage"),
 ]

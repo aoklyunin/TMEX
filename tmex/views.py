@@ -10,8 +10,8 @@ from django.shortcuts import render, redirect, get_object_or_404, render_to_resp
 from django.template import RequestContext
 from django.contrib.auth import logout, login, authenticate
 
+from personal.models import Consumer
 from tmex.forms import ConsumerForm
-from tmex.models import Consumer
 from tmex.utils.helpers import post_only
 
 
@@ -19,8 +19,32 @@ def permissionDenied(request):
     return render(request, 'permissionDenied.html', {})
 
 
+def about(request):
+    return render(request, 'public/about.html', {})
+
+
+def start(request):
+    return render(request, 'public/start.html', {})
+
+
+def attorney(request):
+    return render(request, 'public/attorney.html', {})
+
+
+def help(request):
+    return render(request, 'public/help.html', {})
+
+
+def price(request):
+    return render(request, 'public/price.html', {})
+
+
+def restore(request):
+    return render(request, 'public/restore.html', {})
+
+
 def frontPage(request):
-    return render(request, 'public/front_page.html', {'flgMainPage': True})
+    return render(request, 'public/front_page.html')
 
 
 def ehandler404(request):
