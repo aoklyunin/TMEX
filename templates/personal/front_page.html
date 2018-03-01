@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{%block content%}
+
+<div class="container personal-container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{% static 'img/brain.png' %}" alt="" width="72" height="72">
+        <h2>Личный кабинет</h2>
+        <p class="lead">Здесь Вы можете заполнить личную информацию о себе.</p>
+      </div>
+
+      <div class="row">
+
+        <div class="offset-md-2 col-md-8 order-md-2">
+          <h4 class="mb-3">Данные для отчёта</h4>
+          <form class="needs-validation" novalidate="" action="." method="post">
+            {% csrf_token %}
+            <div class="row">
+              {% for field in form %}
+
+              <div class="col-md-6 mb-3">
+                {{ field.label_tag }}
+                <div class="input-group">
+                  {{ field}}
+                  <div class="invalid-feedback" style="width: 100%;">
+                   {{ field.error}}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+ {%endblock%}

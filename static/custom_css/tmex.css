@@ -157,3 +157,8 @@ body{
 .price-container{
    margin-bottom:11.5rem;
 }
+
+.personal-container{
+  padding-top: 3rem;
+  padding-bottom: 10rem;
+}

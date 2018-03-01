@@ -40,6 +40,7 @@ class Consumer(models.Model):
     TP_COMPANY = 0
     # патентный поверенный
     TP_WORKER = 1
+
     # русский язык
     LANGUAGE_RUSSIAN = 0
     # английский язык

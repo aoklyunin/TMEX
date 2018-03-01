@@ -7,7 +7,7 @@ from django.core.validators import RegexValidator
 from django.forms import FileInput
 
 
-class ConsumerForm(forms.Form):
+class RegisterForm(forms.Form):
     alphanumeric = RegexValidator(r'^[0-9a-zA-Z_@\.]*$',
                                   'Это поле может содержать только латинские буквы, '
                                   'числа и символ _.')

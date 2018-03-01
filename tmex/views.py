@@ -11,7 +11,7 @@ from django.template import RequestContext
 from django.contrib.auth import logout, login, authenticate
 
 from personal.models import Consumer
-from tmex.forms import ConsumerForm
+from tmex.forms import RegisterForm
 from tmex.utils.helpers import post_only
 
 
@@ -68,8 +68,6 @@ def signin(request):
     supplied in the POST request.
     """
 
-    print(request.POST)
-
     redirect_page = request.POST.get('redirect_path', '/')
 
     if request.user.is_authenticated():
@@ -119,13 +117,13 @@ def signup(request):
 
     If account has been created user is redirected to login page.
     """
-    user_form = ConsumerForm()
+    user_form = RegisterForm()
     if request.user.is_authenticated():
         messages.warning(request, 'Вы уже зарегистрированы и вошли')
         return render(request, 'public/signup.html', {'form': user_form})
 
     if request.method == "POST":
-        user_form = ConsumerForm(request.POST)
+        user_form = RegisterForm(request.POST)
 
         if user_form.is_valid():
             if user_form.cleaned_data["password"] != user_form.cleaned_data["rep_password"]:
