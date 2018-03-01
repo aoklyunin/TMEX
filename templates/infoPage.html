@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+ {% block content %}
+
+<div class="container info-container">
+  <div class="row">
+
+<div class="col-lg-8">
+
+          <!-- Title -->
+          <h1 class="mt-4">{% block post_title %}Post Title{% endblock %}</h1>
+          <hr>
+
+          <!-- Preview Image -->
+          <img class="img-fluid rounded" src="{% block post_img %} http://placehold.it/900x300{% endblock %}" alt="">
+
+          <hr>
+          {% block post_text %}
+
+        {% endblock %}
+
+        </div>
+
+  <div class="col-md-4">
+
+
+          <!-- Categories Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Дополнительная информация</h5>
+            <div class="card-body">
+              {% block post_additional %}
+
+              {% endblock %}
+            </div>
+          </div>
+
+          <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Коротко</h5>
+            <div class="card-body">
+              {% block post_shortly %}
+               {% endblock %}
+            </div>
+          </div>
+
+        </div>
+  </div>
+</div>
+ {%endblock%}

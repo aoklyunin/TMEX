@@ -45,7 +45,7 @@
             <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                 {% if user.is_authenticated %}
 
-
+<li class="nav-item"><a href="/support/" class="nav-link">Тех. поддержка</a></li>
                <li class="nav-item dropdown show">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{user.username}}</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown03">
@@ -57,7 +57,7 @@
                    <a class="dropdown-item" href="/signout/">Выход</a>
                 </div>
                 </li>
-                <li class="nav-item"><a href="/support/" class="nav-link">Тех. поддержка</a></li>
+
                 {% else %}
                <li class="nav-item"><a href="/signup/" class="nav-link">Регистрация</a></li>
                 <li class="dropdown order-1">

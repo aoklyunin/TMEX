@@ -129,59 +129,31 @@ body{
   margin-top:70px;
 }
 
-.business-header {
-    height: 50vh;
-    min-height: 550px;
-    margin-top:0;
-    background: url('../img/background2_1920.jpg') center center no-repeat scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
-
-
-
-.features-icons {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-}
-
 
 .container {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 5rem;
+    padding-left: 5rem;
     margin-right: auto;
     margin-left: auto;
 }
 
 
-.features-icons .features-icons-item {
-    max-width: 20rem;
-}
-.ml-auto, .mx-auto {
-    margin-left: auto!important;
-}
-.mr-auto, .mx-auto {
-    margin-right: auto!important;
-}
-.mb-5, .my-5 {
-    margin-bottom: 3rem!important;
+
+.form-signup-heading{
+  padding-top:3rem;
+  padding-bottom:3rem;
 }
 
-features-icons .features-icons-item .features-icons-icon {
-    height: 7rem;
+.info-container{
+  padding-bottom:3rem;
 }
 
-.d-flex {
-    display: -webkit-box!important;
-    display: -ms-flexbox!important;
-    display: flex!important;
+.pricing-header{
+  margin-top:10rem;
+  margin-bottom:5rem;
 }
 
-.features-icons .features-icons-item .features-icons-icon i {
-    font-size: 4.5rem;
+.price-container{
+   margin-bottom:11.5rem;
 }
-
-
