@@ -13,6 +13,7 @@ from django.core.wsgi import get_wsgi_application
 
 from whitenoise.django import DjangoWhiteNoise
 
+# нужно для амазона
 #sys.path.append('/opt/bitnami/apps/django/django_projects/sc')
 #os.environ.setdefault("PYTHON_EGG_CACHE", "/opt/bitnami/apps/django/django_projects/sc/egg_cache")
 

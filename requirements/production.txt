@@ -1,5 +1,6 @@
 #  Production dependencies
 -r base.txt
 gunicorn==19.7.1
+psycopg2==2.7.4
 django-debug-toolbar==1.4
 raven==6.4.0
