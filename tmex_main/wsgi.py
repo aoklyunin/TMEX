@@ -13,9 +13,10 @@ from django.core.wsgi import get_wsgi_application
 
 from whitenoise.django import DjangoWhiteNoise
 
-sys.path.append('/opt/bitnami/apps/django/django_projects/sc')
-os.environ.setdefault("PYTHON_EGG_CACHE", "/opt/bitnami/apps/django/django_projects/sc/egg_cache")
+#sys.path.append('/opt/bitnami/apps/django/django_projects/sc')
+#os.environ.setdefault("PYTHON_EGG_CACHE", "/opt/bitnami/apps/django/django_projects/sc/egg_cache")
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tmex_main.settings.production")
+
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
