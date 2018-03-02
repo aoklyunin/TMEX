@@ -1,7 +1,8 @@
 #!/bin/bash
 
-python3 manage.py makemigrations users --settings=tmex_main.settings.production;
-python3 manage.py makemigrations sc --settings=tmex_main.settings.production;
+python3 manage.py makemigrations balance --settings=tmex_main.settings.production;
+python3 manage.py makemigrations finding --settings=tmex_main.settings.production;
+python3 manage.py makemigrations personal --settings=tmex_main.settings.production;
+python3 manage.py makemigrations support --settings=tmex_main.settings.production;
 python3 manage.py makemigrations --settings=tmex_main.settings.production;
 python3 manage.py migrate --settings=tmex_main.settings.production;
-python3 manage.py pop --settings=tmex_main.settings.production;
