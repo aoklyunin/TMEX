@@ -11,21 +11,21 @@ class Company(models.Model):
     # инн
     inn = models.CharField(max_length=10, default="", blank=True)
     # КПП
-    kpp = models.CharField(max_length=10, default="", blank=True)
+    kpp = models.CharField(max_length=9, default="", blank=True)
     # ОГРН
-    ogrn = models.CharField(max_length=9, default="", blank=True)
+    ogrn = models.CharField(max_length=13, default="", blank=True)
     # юридический адрес
-    jurAddress = models.CharField(max_length=400, default="", blank=True)
+    jurAddress = models.CharField(max_length=100, default="", blank=True)
     # физический адрес
-    fisicAddress = models.CharField(max_length=400, default="", blank=True)
+    fisicAddress = models.CharField(max_length=100, default="", blank=True)
     # Р/С
-    rs = models.CharField(max_length=9, default="", blank=True)
+    rs = models.CharField(max_length=22, default="", blank=True)
     # БИК
     bik = models.CharField(max_length=9, default="", blank=True)
     # банк
     b = models.CharField(max_length=100, default="", blank=True)
     # к/с
-    ks = models.CharField(max_length=30, default="", blank=True)
+    ks = models.CharField(max_length=22, default="", blank=True)
 
     def __unicode__(self):
         return self.name

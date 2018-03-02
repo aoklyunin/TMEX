@@ -129,7 +129,7 @@ class CompanyForm(forms.ModelForm):
          'placeholder': "г. Спб, Литейный пр., д.5, оф. 19",
          'required': '',
          'autofocus': ''}),
-        max_length=80,
+        max_length=100,
         label="Юридический адрес",
         min_length=3,
         required=False)
@@ -140,7 +140,7 @@ class CompanyForm(forms.ModelForm):
          'placeholder': "п. Шушары, Пушкинская ул., д.22, оф. 251",
          'required': '',
          'autofocus': ''}),
-        max_length=80,
+        max_length=100,
         label="Физический адрес",
         min_length=3,
         required=False)
@@ -173,7 +173,7 @@ class CompanyForm(forms.ModelForm):
          'placeholder': "Северо-Западный Банк ОАО «Сбербанк России»",
          'required': '',
          'autofocus': ''}),
-        max_length=80,
+        max_length=100,
         min_length=3,
         label="Банк",
         required=False)
