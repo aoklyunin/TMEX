@@ -1,43 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'personalPage.html' %}
 {% load static %}
 
 
-{%block content%}
+{% block image %} {% static 'img/company.png' %} {% endblock %}
+{% block caption %} Ваша компания {% endblock %}
+{% block sub_caption %} Здесь Вы можете заполнить информацию о своей компании для выставления счёта. {% endblock %}
+{% block pre_form %}<h4 class="mb-3" >Реквизиты</h4>{% endblock %}
+{% block form_submit_name %}Сохранить {% endblock %}
+{% block form_class%}col-12 order-md-2{% endblock %}
+{% block input_class%}col-md-4 mb-3{% endblock %}
 
-<div class="container personal-container">
-      <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="{% static 'img/company.png' %}" alt="" width="72" height="72">
-        <h2>Ваша компания</h2>
-        <p class="lead">Здесь Вы можете заполнить информацию о своей компании для выставления счёта.</p>
-      </div>
-
-      <div class="row">
-
-        <div class="col-12 order-md-2">
-          <h4 class="mb-3" >Реквизиты</h4>
-          <form class="needs-validation" novalidate="" action="." method="post">
-            {% csrf_token %}
-            <div class="row">
-              {% for field in form %}
-
-              <div class="col-md-4 mb-3">
-                {{ field.label_tag }}
-                <div class="input-group">
-                  {{ field}}
-
-                </div>
-                 {% for error in field.errors %}<br>
-                    <p class="text-danger">{{ error }}</p>
-                    {% endfor %}
-              </div>
-              {% endfor %}
-            </div>
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить</button>
-          </form>
-        </div>
-      </div>
-
-    </div>
-
- {%endblock%}

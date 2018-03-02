@@ -43,8 +43,6 @@ def company(request):
         company = Company.objects.create()
         consumer.companies.add(company)
 
-    print(company.pk)
-
     if request.method == "POST":
         company_form = CompanyForm(request.POST)
 

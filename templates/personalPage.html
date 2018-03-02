@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{%block content%}
+
+<div class="container personal-container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{% block image %} {% endblock %}" alt="" width="72" height="72">
+        <h2>{% block caption %} {% endblock %}</h2>
+        <p class="lead">{% block sub_caption %} {% endblock %} </p>
+      </div>
+
+      <div class="row">
+
+        <div class="{% block form_class%}offset-md-2 col-md-8 order-md-2{% endblock %}">
+          {% block pre_form %}
+          <h4 class="mb-3">Данные для отчёта</h4>
+          {% endblock %}
+          <form class="needs-validation" novalidate="" action="." method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+              {% for field in form %}
+              <div class="{% block input_class%}{% endblock %}">
+                {{ field.label_tag }}
+                <div class="input-group">
+                  {{ field}}
+
+                </div>
+                 {% for error in field.errors %}<br>
+                    <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
+              </div>
+              {% endfor %}
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">{% block form_submit_name %} {% endblock %}</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+ {%endblock%}

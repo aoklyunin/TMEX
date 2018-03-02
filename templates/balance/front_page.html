@@ -1,7 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'personalPage.html' %}
 {% load static %}
 
 
-{%block content%}
-
- {%endblock%}
+{% block image %}{% static 'img/balance.png' %} {% endblock %}
+{% block caption %} Баланс{% endblock %}
+{% block sub_caption %} Здесь Вы можете пополнить свой счёт. {% endblock %}
+{% block pre_form %}<h4 class="mb-3">Ваш баланс: {{balance}}</h4> {% endblock %}
+{% block form_submit_name %}Пополнить {% endblock %}
+{% block form_class%}offset-md-2 col-md-8 order-md-2{% endblock %}
+{% block input_class%}col-md-6 mb-3{% endblock %}

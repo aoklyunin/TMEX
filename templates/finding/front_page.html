@@ -1,8 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'personalPage.html' %}
 {% load static %}
 
 
-{%block content%}
-
-
- {%endblock%}
+{% block image %} {% static 'img/find.png' %} {% endblock %}
+{% block caption %} Поиск {% endblock %}
+{% block sub_caption %} Здесь Вы можете пополнить свой счёт. {% endblock %}
+{% block pre_form %}<h4 class="mb-3">Данные для отчёта</h4> {% endblock %}
+{% block form_submit_name %} Поиск {% endblock %}
+{% block form_class%}offset-md-2 col-md-8 order-md-2{% endblock %}
+{% block input_class%}col-md-6 mb-3{% endblock %}
