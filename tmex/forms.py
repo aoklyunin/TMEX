@@ -12,7 +12,7 @@ class RegisterForm(forms.Form):
                                   'Это поле может содержать только латинские буквы, '
                                   'числа и символ _.')
 
-    username = forms.CharField(widget=forms.TextInput(
+    username = forms.EmailField(widget=forms.TextInput(
         attrs=
         {'class': "form-control pageInput",
          'placeholder': "Email",

@@ -129,7 +129,8 @@ def signup(request):
             if user_form.cleaned_data["password"] != user_form.cleaned_data["rep_password"]:
                 messages.error(request, 'пароли не совпадают')
             else:
-                username = user_form["username"]
+                username = user_form.cleaned_data["username"]
+                password = user_form.cleaned_data["password"]
                 try:
                     User.objects.get(username=username)
                     messages.error(request, 'пользователь уже существует')
@@ -137,11 +138,10 @@ def signup(request):
                     new_user = User(username=username)
                     new_user.set_password(user_form.cleaned_data["password"])
                     new_user.save()
-                    consumer = Consumer()
-                    consumer.user = new_user
+                    consumer = Consumer(user=new_user)
                     consumer.save()
-                    user = authenticate(username=request.POST['username'],
-                                        password=request.POST['password'])
+                    user = authenticate(username=username,
+                                        password=password)
                     login(request, user)
                 return redirect('frontpage')
 

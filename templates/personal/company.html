@@ -4,5 +4,40 @@
 
 {%block content%}
 
+<div class="container personal-container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{% static 'img/company.png' %}" alt="" width="72" height="72">
+        <h2>Ваша компания</h2>
+        <p class="lead">Здесь Вы можете заполнить информацию о своей компании для выставления счёта.</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-12 order-md-2">
+          <h4 class="mb-3" >Реквизиты</h4>
+          <form class="needs-validation" novalidate="" action="." method="post">
+            {% csrf_token %}
+            <div class="row">
+              {% for field in form %}
+
+              <div class="col-md-4 mb-3">
+                {{ field.label_tag }}
+                <div class="input-group">
+                  {{ field}}
+
+                </div>
+                 {% for error in field.errors %}<br>
+                    <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
+              </div>
+              {% endfor %}
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
 
  {%endblock%}

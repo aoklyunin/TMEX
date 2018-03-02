@@ -24,10 +24,11 @@
                 {{ field.label_tag }}
                 <div class="input-group">
                   {{ field}}
-                  <div class="invalid-feedback" style="width: 100%;">
-                   {{ field.error}}
-                  </div>
+
                 </div>
+                 {% for error in field.errors %}<br>
+                    <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
               </div>
               {% endfor %}
             </div>
