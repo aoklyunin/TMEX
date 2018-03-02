@@ -106,7 +106,7 @@ CACHES = {
 }
 
 RAVEN_CONFIG = {
-    'dsn': 'https://b060834f6f394375bfa35e59df772d5b:d3bab19eeb834631a39e7f647e794327@sentry.io/278601',
+    'dsn': 'https://56585d85d6714c6da27d2105482190f6:afedde91fc3c4601b0dc21ea5a5e3b7e@sentry.io/297218',
     # If you are using git, you can also automatically configure the
     # release based on the git info.
     #'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
